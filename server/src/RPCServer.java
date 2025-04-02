@@ -2,12 +2,25 @@ import java.net.*;
 import java.io.*;
 
 
-public class ServerDemo {
-    public static void main(String [] args){
-        //定义端口号8080
-        int port=8080;
-        //定义排队长度
-        int backlog=50;
+public class RPCServer {
+    //排队长度在创建时确定
+    private int backlog;
+
+    public RPCServer(){
+        //默认为50
+        this.backlog=50;
+    }
+
+    public RPCServer(int backlog){
+        this.backlog=backlog;
+    }
+
+    public void setBacklog(int backlog) {
+        this.backlog = backlog;
+    }
+
+    //运行时制定端口
+    public void run(int port){
         try{
             //新建一个服务器对象
             ServerSocket serverSocket =new ServerSocket(port,backlog);
@@ -31,5 +44,9 @@ public class ServerDemo {
         }catch (IOException e){
             e.printStackTrace();
         }
+    }
+    public static void main(String [] args){
+        RPCServer myServer=new RPCServer();
+        myServer.run(8080);
     }
 }

@@ -5,13 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d2e1bcde-d2ab-498a-93db-a76b206c9563" name="更改" comment="初始">
-      <change afterPath="$PROJECT_DIR$/client/src/ClientDemo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/ServerDemo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/client.iml" beforeDir="false" afterPath="$PROJECT_DIR$/client/client.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/codec/codec.iml" beforeDir="false" afterPath="$PROJECT_DIR$/codec/codec.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/common.iml" beforeDir="false" afterPath="$PROJECT_DIR$/common/common.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/server.iml" beforeDir="false" afterPath="$PROJECT_DIR$/server/server.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/ClientDemo.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/RPCClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/ServerDemo.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/RPCServer.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,12 +50,15 @@
   "keyToString": {
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
     "project.structure.last.edited": "项目",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
     "settings.editor.selected.configurable": "preferences.lookFeel",
+    "应用程序.ClientDemo.executor": "Run",
+    "应用程序.Main.executor": "Run",
     "应用程序.ServerDemo.executor": "Run"
   }
 }]]></component>
@@ -87,7 +87,23 @@
       <option name="project" value="LOCAL" />
       <updated>1743577310794</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="初始">
+      <option name="closed" value="true" />
+      <created>1743582401934</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1743582401934</updated>
+    </task>
+    <task id="LOCAL-00004" summary="初始">
+      <option name="closed" value="true" />
+      <created>1743582430574</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1743582430574</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
