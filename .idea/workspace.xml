@@ -4,11 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d2e1bcde-d2ab-498a-93db-a76b206c9563" name="更改" comment="初始">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+    <list default="true" id="d2e1bcde-d2ab-498a-93db-a76b206c9563" name="更改" comment="将demo用方法封装起来，下一步准备更进一步添加内容。">
+      <change afterPath="$PROJECT_DIR$/codec/src/Serializer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/RpcRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/RpcResponse.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/ClientDemo.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/RPCClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/ServerDemo.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/RPCServer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/RPCClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/RpcClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/server.iml" beforeDir="false" afterPath="$PROJECT_DIR$/server/server.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/RPCServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/RpcServer.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -19,6 +23,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
@@ -51,14 +56,16 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
-    "project.structure.last.edited": "项目",
+    "last_opened_file_path": "C:/d/myrpc",
+    "project.structure.last.edited": "模块",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
     "settings.editor.selected.configurable": "preferences.lookFeel",
     "应用程序.ClientDemo.executor": "Run",
     "应用程序.Main.executor": "Run",
+    "应用程序.RPCClient.executor": "Run",
+    "应用程序.RPCServer.executor": "Run",
     "应用程序.ServerDemo.executor": "Run"
   }
 }]]></component>
@@ -103,7 +110,15 @@
       <option name="project" value="LOCAL" />
       <updated>1743582430574</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="将demo用方法封装起来，下一步准备更进一步添加内容。">
+      <option name="closed" value="true" />
+      <created>1743603597644</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1743603597644</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -119,6 +134,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="初始" />
-    <option name="LAST_COMMIT_MESSAGE" value="初始" />
+    <MESSAGE value="将demo用方法封装起来，下一步准备更进一步添加内容。" />
+    <option name="LAST_COMMIT_MESSAGE" value="将demo用方法封装起来，下一步准备更进一步添加内容。" />
   </component>
 </project>

@@ -1,9 +1,13 @@
 import java.net.*;
 import java.io.*;
 
-public class RPCClient {
+public class RpcClient {
 
-    public void sent(int port,String address,String messages){
+    public RpcRequest buildRequest(){
+        return new RpcRequest();
+    };
+
+    public void sentRequest(int port,String address,String messages){
         try {
             //使用getByName来解析一个域名或者是ip地址的字符串，如果是以字节数组形式存储的ip地址则可以直接使用getByName
             InetAddress iAddress=InetAddress.getByName(address);
@@ -30,7 +34,7 @@ public class RPCClient {
     }
 
     public static void main(String [] args){
-        RPCClient myClient=new RPCClient();
-        myClient.sent(8080,"127.0.0.1","你好");
+        RpcClient myClient=new RpcClient();
+        myClient.sentRequest(8080,"127.0.0.1","你好");
     }
 }

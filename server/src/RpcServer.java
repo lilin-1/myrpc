@@ -2,16 +2,17 @@ import java.net.*;
 import java.io.*;
 
 
-public class RPCServer {
+public class RpcServer {
     //排队长度在创建时确定
     private int backlog;
 
-    public RPCServer(){
+    public RpcServer(){
         //默认为50
+
         this.backlog=50;
     }
 
-    public RPCServer(int backlog){
+    public RpcServer(int backlog){
         this.backlog=backlog;
     }
 
@@ -46,7 +47,7 @@ public class RPCServer {
         }
     }
     public static void main(String [] args){
-        RPCServer myServer=new RPCServer();
+        RpcServer myServer=new RpcServer();
         myServer.run(8080);
     }
 }
