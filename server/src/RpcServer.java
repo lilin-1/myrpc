@@ -1,53 +1,41 @@
+import java.lang.reflect.Method;
 import java.net.*;
 import java.io.*;
 
 
 public class RpcServer {
-    //排队长度在创建时确定
-    private int backlog;
+    public static void export(String serviceName, Object serviceImpl, int port) throws IOException {
+        // 注册服务到注册中心
+        ServiceRegistry.register(serviceName, "localhost:" + port);
 
-    public RpcServer(){
-        //默认为50
+        // 创建ServerSocket
+        try (ServerSocket serverSocket = new ServerSocket(port)) {
+            System.out.println("Server started on port " + port);
 
-        this.backlog=50;
-    }
+            while (true) {
+                Socket socket = serverSocket.accept();
+                new Thread(() -> {
+                    try {
+                        // 处理请求
+                        ObjectInputStream input = new ObjectInputStream(socket.getInputStream());
+                        RpcRequest request = (RpcRequest) input.readObject();
 
-    public RpcServer(int backlog){
-        this.backlog=backlog;
-    }
+                        // 反射调用方法
+                        Method method = serviceImpl.getClass().getMethod(
+                                request.getMethodName(),
+                                request.getParameterTypes());
 
-    public void setBacklog(int backlog) {
-        this.backlog = backlog;
-    }
+                        Object result = method.invoke(serviceImpl, request.getParameters());
 
-    //运行时制定端口
-    public void run(int port){
-        try{
-            //新建一个服务器对象
-            ServerSocket serverSocket =new ServerSocket(port,backlog);
-            System.out.println("服务器启动，等待客户端连接...");
-
-            while (true){
-                //创建客户端对象
-                Socket server= serverSocket.accept();
-                // 接收客户端消息
-                DataInputStream in = new DataInputStream(server.getInputStream());
-                System.out.println("收到客户端消息：" + in.readUTF());
-
-                // 发送响应
-                DataOutputStream out = new DataOutputStream(server.getOutputStream());
-                out.writeUTF("你好，客户端！我是服务器 " + server.getLocalSocketAddress());
-
-                server.close();  // 关闭连接
+                        // 返回结果
+                        ObjectOutputStream output = new ObjectOutputStream(socket.getOutputStream());
+                        output.writeObject(result);
+                        output.flush();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }).start();
             }
-
-
-        }catch (IOException e){
-            e.printStackTrace();
         }
-    }
-    public static void main(String [] args){
-        RpcServer myServer=new RpcServer();
-        myServer.run(8080);
     }
 }
