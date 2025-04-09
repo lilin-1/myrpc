@@ -10,19 +10,20 @@ public class RpcProxy {
                 new Class<?>[]{interfaceClass},
                 (proxy, method, args) -> {
                     // 获取服务地址
-                    String serviceAddress = ClientServiceRegistry.getServiceAddress(method.getName(), method.getParameterTypes(), args);
+                    String serviceAddress = ClientServiceRegistry.getServiceAddress(interfaceClass.getName(), method.getParameterTypes(), args);
                     if (serviceAddress == null) {
                         throw new RuntimeException("Service not found");
                     }
+                    RpcRequest request = new RpcRequest(
+                            method.getName(),
+                            method.getParameterTypes(),
+                            args);
 
                     // 建立Socket连接
                     try (Socket socket = new Socket(serviceAddress.split(":")[0],
                             Integer.parseInt(serviceAddress.split(":")[1]))) {
                         // 发送请求
-                        RpcRequest request = new RpcRequest(
-                                method.getName(),
-                                method.getParameterTypes(),
-                                args);
+
 
                         ObjectOutputStream output = new ObjectOutputStream(socket.getOutputStream());
                         output.writeObject(request);

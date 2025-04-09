@@ -22,15 +22,16 @@ public class ServiceRegistry {
         try (ServerSocket serverSocket = new ServerSocket(port)) {
             System.out.println("Service registry started on port " + port);
 
-            while (true) {
+
                 Socket clientSocket = serverSocket.accept();
+                System.out.println("begin");
                 threadPool.execute(new ClientHandler(clientSocket));
-            }
+
         }
     }
 
     // 处理客户端请求
-    private class ClientHandler implements Runnable {
+    private  class ClientHandler implements Runnable {
         private final Socket clientSocket;
 
         ClientHandler(Socket socket) {
@@ -49,6 +50,7 @@ public class ServiceRegistry {
                 // 查询服务地址
                 String serviceAddress = serviceMap.get(request.getMethodName());
 
+
                 // 构建响应
                 RpcResponse response = new RpcResponse(
                         serviceAddress != null ?
@@ -57,6 +59,7 @@ public class ServiceRegistry {
                 );
 
                 // 发送响应
+                System.out.println(response.getServiceAddress());
                 output.writeObject(response);
                 output.flush();
             } catch (Exception e) {
@@ -77,15 +80,4 @@ public class ServiceRegistry {
         System.out.println("Registered service: " + serviceName + " -> " + address);
     }
 
-    // 测试用例
-    public static void main(String[] args) throws IOException {
-        ServiceRegistry registry = new ServiceRegistry(8500);
-
-        // 注册示例服务
-        registry.registerService("UserService", "192.168.1.100:9090");
-        registry.registerService("OrderService", "192.168.1.101:9091");
-
-        // 启动注册中心
-        registry.start();
-    }
 }

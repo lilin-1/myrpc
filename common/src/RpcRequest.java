@@ -3,7 +3,7 @@ import java.io.*;
 public class RpcRequest implements Serializable {
     private String methodName;
     private Class<?>[] parameterTypes;
-    private Object[] parameters;
+    private  Object[] parameters;
 
     public RpcRequest(String name, Class<?>[] parameterTypes, Object[] args) {
         this.methodName=name;

@@ -1,12 +1,14 @@
 import java.io.*;
 
 public class RpcResponse implements Serializable {
-   private String ServiceAddress;
+   private String serviceAddress;
 
     public RpcResponse(String s) {
+        this.serviceAddress=s;
     }
 
     public String getServiceAddress() {
-        return ServiceAddress;
+        return this.serviceAddress;
     }
+
 }

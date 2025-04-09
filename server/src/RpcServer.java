@@ -7,6 +7,9 @@ public class RpcServer {
     public static void export(String serviceName, Object serviceImpl, int port) throws IOException {
         // 注册服务到注册中心
         ServiceRegistry.registerService(serviceName, "localhost:" + port);
+        ServiceRegistry registry = new ServiceRegistry(8500);
+        registry.start();
+
 
         // 创建ServerSocket
         try (ServerSocket serverSocket = new ServerSocket(port)) {

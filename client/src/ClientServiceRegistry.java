@@ -3,7 +3,7 @@ import java.io.*;
 
 public class ClientServiceRegistry {
     // 新增注册中心地址配置
-    private static final String REGISTRY_ADDRESS = "registry.server:8500";
+    private static final String REGISTRY_ADDRESS = "localhost:8500";
 
     public static String getServiceAddress(String serviceName, Class<?>[] parameterTypes, Object[] args) {
         try (Socket socket = new Socket(
