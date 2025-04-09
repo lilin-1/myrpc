@@ -23,15 +23,17 @@ public class ServiceRegistry {
             System.out.println("Service registry started on port " + port);
 
 
+            while (true){
                 Socket clientSocket = serverSocket.accept();
                 System.out.println("begin");
                 threadPool.execute(new ClientHandler(clientSocket));
+            }
 
         }
     }
 
     // 处理客户端请求
-    private  class ClientHandler implements Runnable {
+    private class ClientHandler implements Runnable {
         private final Socket clientSocket;
 
         ClientHandler(Socket socket) {
@@ -45,22 +47,29 @@ public class ServiceRegistry {
                     ObjectOutputStream output = new ObjectOutputStream(clientSocket.getOutputStream())
             ) {
                 // 读取客户端请求
-                RpcRequest request = (RpcRequest) input.readObject();
+                Object request = input.readObject();
 
-                // 查询服务地址
-                String serviceAddress = serviceMap.get(request.getMethodName());
+                // 处理注册请求
+                if (request instanceof RegisterRequest) {
+                    RegisterRequest registerRequest = (RegisterRequest) request;
+                    String serviceName = registerRequest.getServiceName();
+                    String serviceAddress = registerRequest.getServiceAddress();
+                    serviceMap.put(serviceName, serviceAddress);
+                    System.out.println("Registered service: " + serviceName + " -> " + serviceAddress);
 
-
-                // 构建响应
-                RpcResponse response = new RpcResponse(
-                        serviceAddress != null ?
-                                serviceAddress :
-                                "Service not found: " + request.getMethodName()
-                );
-
-                // 发送响应
-                System.out.println(response.getServiceAddress());
-                output.writeObject(response);
+                    // 发送响应
+                    RegisterResponse response = new RegisterResponse(true, "Service registered successfully");
+                    output.writeObject(response);
+                }
+                // 处理服务查询请求（原有逻辑）
+                else if (request instanceof RpcRequest) {
+                    RpcRequest rpcRequest = (RpcRequest) request;
+                    String serviceAddress = serviceMap.get(rpcRequest.getMethodName());
+                    RpcResponse rpcResponse = new RpcResponse(
+                            serviceAddress != null ? serviceAddress : "Service not found: " + rpcRequest.getMethodName()
+                    );
+                    output.writeObject(rpcResponse);
+                }
                 output.flush();
             } catch (Exception e) {
                 System.err.println("Error handling client: " + e.getMessage());

@@ -2,7 +2,7 @@ import java.net.*;
 import java.io.*;
 
 public class ClientServiceRegistry {
-    private static final String REGISTRY_ADDRESS = "localhost:8500";
+    private static final String REGISTRY_ADDRESS = "localhost:8050";
     private final Sender registrySender;
     private final Serializer serializer = new SerializerImpl();
 
