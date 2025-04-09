@@ -1,6 +1,6 @@
+import java.io.*;
+
 public interface Serializer {
-    //序列化方法
-    <T> byte serialize(T obj);
-    //反序列化方法
-    <T> T deserialize(byte[] data, Class<T> clazz);
+    <T> byte[] serialize(T obj) throws IOException;
+    <T> T deserialize(byte[] data, Class<T> clazz) throws IOException, ClassNotFoundException;
 }

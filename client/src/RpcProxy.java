@@ -10,7 +10,8 @@ public class RpcProxy {
                 new Class<?>[]{interfaceClass},
                 (proxy, method, args) -> {
                     // 获取服务地址
-                    String serviceAddress = ClientServiceRegistry.getServiceAddress(interfaceClass.getName(), method.getParameterTypes(), args);
+                    ClientServiceRegistry clientServiceRegistry = new ClientServiceRegistry();
+                    String serviceAddress = clientServiceRegistry.getServiceAddress(interfaceClass.getName(), method.getParameterTypes(), args);
                     if (serviceAddress == null) {
                         throw new RuntimeException("Service not found");
                     }

@@ -2,24 +2,23 @@ import java.net.*;
 import java.io.*;
 
 public class ClientServiceRegistry {
-    // 新增注册中心地址配置
     private static final String REGISTRY_ADDRESS = "localhost:8500";
+    private final Sender registrySender;
+    private final Serializer serializer = new SerializerImpl();
 
-    public static String getServiceAddress(String serviceName, Class<?>[] parameterTypes, Object[] args) {
-        try (Socket socket = new Socket(
-                REGISTRY_ADDRESS.split(":")[0],
-                Integer.parseInt(REGISTRY_ADDRESS.split(":")[1]))) {
+    public ClientServiceRegistry() {
+        this.registrySender = new Sender(REGISTRY_ADDRESS);
+    }
 
-            // 发送查询请求
-            ObjectOutputStream output = new ObjectOutputStream(socket.getOutputStream());
-            output.writeObject(new RpcRequest(serviceName,parameterTypes,args));
-            output.flush();
+    public String getServiceAddress(String serviceName, Class<?>[] parameterTypes, Object[] args) {
+        try {
+            // 使用通用序列化器
+            byte[] requestData = serializer.serialize(new RpcRequest(serviceName, parameterTypes, args));
+            byte[] responseData = registrySender.send(requestData);
+            RpcResponse response = serializer.deserialize(responseData, RpcResponse.class);
 
-            // 获取响应
-            ObjectInputStream input = new ObjectInputStream(socket.getInputStream());
-            RpcResponse response = (RpcResponse) input.readObject();
             return response.getServiceAddress();
-        } catch (Exception e) {
+        } catch (IOException | ClassNotFoundException e) {
             throw new RuntimeException("Failed to query registry", e);
         }
     }
