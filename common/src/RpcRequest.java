@@ -23,5 +23,5 @@ public class RpcRequest implements Serializable {
         return parameters;
     }
 
-    // 构造方法、getter/setter省略
+
 }

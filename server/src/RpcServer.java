@@ -6,7 +6,7 @@ import java.io.*;
 public class RpcServer {
     public static void export(String serviceName, Object serviceImpl, int port) throws IOException {
         // 注册服务到注册中心
-        ServiceRegistry.register(serviceName, "localhost:" + port);
+        ServiceRegistry.registerService(serviceName, "localhost:" + port);
 
         // 创建ServerSocket
         try (ServerSocket serverSocket = new ServerSocket(port)) {
